@@ -60,10 +60,9 @@ export default function App() {
     )[0],
   })
 
-
   const [nilakanthaFormulaData, setNilakanthaFormulaData] = useState({
     odds: arrayOfLength(n).map(x => 2 * x + 3),
-    partialSum: arrayOfLength(n).map(x => 2 * x + 3).map(x => 4 / (x ** 3 - x)).reduce(
+    partialSum: arrayOfLength(n).map(x => 2 * x + 3).map((x,idx) => (-1)**(idx)*4 / (x ** 3 - x)).reduce(
       ([arr, sum], el) => {
         const next = sum + el
         arr.push(next)

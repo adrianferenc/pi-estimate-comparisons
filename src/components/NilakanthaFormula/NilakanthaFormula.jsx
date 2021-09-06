@@ -19,7 +19,7 @@ export default function NilakanthaFormula({ n, nilakanthaFormulaData }) {
         width: '100%'
       }}>
         <MathJax.Provider style={{ width: "100%" }}>
-          <MathJax.Node formula={[i === 0 ? '3 + ' : '+'] + nilakanthaFormulaData.odds.slice(8 * i, Math.min(8 * (i + 1), n)).map(x => `\\underset{${nilakanthaFormulaData.partialSum[(x - 3) / 2].toFixed(5)}}{\\frac{4}{${x}^3-${x}}}`).map((x, idx) => idx % 2 === 0 ? (idx > 0 ? ` + ${x}` : x) : ` - ${x}`).join('')} />
+          <MathJax.Node formula={[i === 0 ? '\\underset{3}{3} + ' : '+'] + nilakanthaFormulaData.odds.slice(8 * i, Math.min(8 * (i + 1), n)).map(x => `\\underset{${nilakanthaFormulaData.partialSum[(x - 3) / 2].toFixed(5)}}{\\frac{4}{${x}^3-${x}}}`).map((x, idx) => idx % 2 === 0 ? (idx > 0 ? ` + ${x}` : x) : ` - ${x}`).join('')} />
         </MathJax.Provider>
       </Carousel.Item>
     )
