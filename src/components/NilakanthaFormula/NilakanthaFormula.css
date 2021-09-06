@@ -1,0 +1,19 @@
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  height: 50px;
+  width: 50px;
+  background-image: none;
+}
+
+.carousel-control-next-icon:after {
+  content: "\2192";
+  display: block;
+  font-size: 25px;
+  color: gray;
+}
+
+.carousel-control-prev-icon:after {
+  content: "\2190";
+  font-size: 25px;
+  color: gray;
+}
