@@ -14,7 +14,7 @@ export default function QuarterCircleRE({ n, graphData }) {
             <Card>
                 <Card.Title>
                     <span style={{ display: "flex", justifyContent: "center", margin: "0 30px" }}>
-                        The Area of a Quarter Circle Using a Riemann Sum and Right Endpoints
+                        The Area of a Quarter Circle Using a Riemann Sum, n subintervals, and Left Endpoints
                     </span>
                     <span onClick={handleShow} style={{ position: "absolute", right: "0", top: "0", cursor: "pointer" }}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" className="bi bi-info-circle" viewBox="0 0 16 16">
@@ -73,7 +73,7 @@ export default function QuarterCircleRE({ n, graphData }) {
 
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title>The Riemann Sum with Right Endpoints</Modal.Title>
+                    <Modal.Title>Riemann Sum with Right Endpoints</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
 
