@@ -32,7 +32,7 @@ export default function QuarterCircleLE({ n, graphData }) {
                         marker: {
                             color: 'rgb(0, 77, 64)'
                         }
-                            
+
                     },
                     {
                         x: graphData.leftEndpoints,
@@ -64,8 +64,12 @@ export default function QuarterCircleLE({ n, graphData }) {
                     }}
                 />
                 <MathJax.Provider>
-                    <MathJax.Node formula={`\\text{The Total Area Is } ${graphData.leftTotalArea}`} />
-                    <MathJax.Node formula={`\\left|\\pi - 4\\left(\\text{Total Area}\\right)\\right| = ${Math.abs(Math.PI - 4 * graphData.leftTotalArea)}`} />
+                    <MathJax.Node formula={
+                        `\\text{The Total Area Is } ${graphData.leftTotalArea}`
+                    } />
+                    <MathJax.Node formula={
+                        `\\left|\\pi - 4\\left(\\text{Total Area}\\right)\\right| = ${Math.abs(Math.PI - 4 * graphData.leftTotalArea)}`
+                    } />
                 </MathJax.Provider>
             </Card>
 

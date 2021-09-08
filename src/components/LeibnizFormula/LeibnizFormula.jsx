@@ -19,7 +19,13 @@ export default function LeibnizFormula({ n, leibnizFormulaData }) {
         width: '100%'
       }}>
         <MathJax.Provider style={{ width: "100%" }}>
-          <MathJax.Node formula={[i === 0 ? '' : '+'] + leibnizFormulaData.odds.slice(10 * i, Math.min(10 * (i + 1), n)).map(x => x.toString().length < 7 ? `\\underset{${leibnizFormulaData.partialSum[(x - 1) / 2].toFixed(5)}}{\\frac{1}{${x}}}` : `\\underset{${leibnizFormulaData.partialSum[(x - 1) / 2].toFixed(5)}}{\\frac{1}{${Math.sqrt(x)}^2}}`).map((x,idx)=> idx%2===0 ? (idx > 0 ? ` + ${x}` : x): ` - ${x}`).join('')} />
+          <MathJax.Node formula={
+            [i === 0 ? '' : '+'] +
+            leibnizFormulaData.odds
+              .slice(10 * i, Math.min(10 * (i + 1), n))
+              .map(x => x.toString().length < 7 ? `\\underset{${leibnizFormulaData.partialSum[(x - 1) / 2].toFixed(5)}}{\\frac{1}{${x}}}` : `\\underset{${leibnizFormulaData.partialSum[(x - 1) / 2].toFixed(5)}}{\\frac{1}{${Math.sqrt(x)}^2}}`)
+              .map((x, idx) => idx % 2 === 0 ? (idx > 0 ? ` + ${x}` : x) : ` - ${x}`).join('')
+          } />
         </MathJax.Provider>
       </Carousel.Item>
     )
@@ -45,8 +51,12 @@ export default function LeibnizFormula({ n, leibnizFormulaData }) {
         </Carousel>
 
         <MathJax.Provider>
-          <MathJax.Node formula={`\\text{The Partial Sum Equals } ${leibnizFormulaData.odds.map((x, idx) => (-1) ** (idx) * 1 / x).reduce((a, c) => a + c, 0)}`} />
-          <MathJax.Node formula={`\\left|\\pi - 4 \\left(\\text{The Partial Sum}\\right)\\right| = ${Math.abs(Math.PI - 4 * leibnizFormulaData.odds.map((x, idx) => (-1) ** (idx) * 1 / x).reduce((a, c) => a + c, 0))}`} />
+          <MathJax.Node formula={
+            `\\text{The Partial Sum Equals } ${leibnizFormulaData.odds.map((x, idx) => (-1) ** (idx) * 1 / x).reduce((a, c) => a + c, 0)}`
+          } />
+          <MathJax.Node formula={
+            `\\left|\\pi - 4 \\left(\\text{The Partial Sum}\\right)\\right| = ${Math.abs(Math.PI - 4 * leibnizFormulaData.odds.map((x, idx) => (-1) ** (idx) * 1 / x).reduce((a, c) => a + c, 0))}`
+          } />
         </MathJax.Provider>
 
       </Card>

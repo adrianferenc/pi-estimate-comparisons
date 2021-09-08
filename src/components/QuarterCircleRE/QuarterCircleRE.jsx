@@ -62,8 +62,12 @@ export default function QuarterCircleRE({ n, graphData }) {
                     }}
                 />
                 <MathJax.Provider>
-                    <MathJax.Node formula={`\\text{The Total Area Is } ${graphData.rightTotalArea}`} />
-                    <MathJax.Node formula={`\\left|\\pi - 4\\left(\\text{Total Area}\\right)\\right| = ${Math.abs(Math.PI - 4 * graphData.rightTotalArea)}`} />
+                    <MathJax.Node formula={
+                        `\\text{The Total Area Is } ${graphData.rightTotalArea}`
+                    } />
+                    <MathJax.Node formula={
+                        `\\left|\\pi - 4\\left(\\text{Total Area}\\right)\\right| = ${Math.abs(Math.PI - 4 * graphData.rightTotalArea)}`
+                    } />
                 </MathJax.Provider>
             </Card>
 

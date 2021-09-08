@@ -88,22 +88,26 @@ export default function MonteCarlo({ n, monteCarloData }) {
         />
 
         <MathJax.Provider>
-          <MathJax.Node formula={`\\frac{\\text{Area of the circle}}{\\text{Area of the square}} = \\frac{\\pi\\times (1)^2}{2\\times2} = \\frac{\\pi}{4}`} />
-          <MathJax.Node formula={`\\frac{\\text{Points in the circle}}{\\text{Points in the square}} = \\frac{${monteCarloData.insidePointsX.length}}{${(monteCarloData.insidePointsX.length + monteCarloData.outsidePointsX.length)}} = ${monteCarloData.insidePointsX.length / (monteCarloData.insidePointsX.length + monteCarloData.outsidePointsX.length)}`} />
-          <MathJax.Node formula={`\\text{Estimate of } \\pi = 4\\times\\frac{${monteCarloData.insidePointsX.length}}{${(monteCarloData.insidePointsX.length + monteCarloData.outsidePointsX.length)}} = ${4 * monteCarloData.insidePointsX.length / (monteCarloData.insidePointsX.length + monteCarloData.outsidePointsX.length)}`} />
-          <MathJax.Node formula={`\\left|\\pi - 4\\times\\frac{${monteCarloData.insidePointsX.length}}{${(monteCarloData.insidePointsX.length + monteCarloData.outsidePointsX.length)}}\\right| = ${Math.abs(4 * monteCarloData.insidePointsX.length / (monteCarloData.insidePointsX.length + monteCarloData.outsidePointsX.length) - Math.PI)}`} />
+          <MathJax.Node formula={
+            `\\frac{\\text{Area of the circle}}{\\text{Area of the square}} = \\frac{\\pi\\times (1)^2}{2\\times2} = \\frac{\\pi}{4}`
+          } />
+          <MathJax.Node formula={
+            `\\frac{\\text{Points in the circle}}{\\text{Points in the square}} = \\frac{${monteCarloData.insidePointsX.length}}{${(monteCarloData.insidePointsX.length + monteCarloData.outsidePointsX.length)}} = ${monteCarloData.insidePointsX.length / (monteCarloData.insidePointsX.length + monteCarloData.outsidePointsX.length)}`
+          } />
+          <MathJax.Node formula={
+            `\\text{Estimate of } \\pi = 4\\times\\frac{${monteCarloData.insidePointsX.length}}{${(monteCarloData.insidePointsX.length + monteCarloData.outsidePointsX.length)}} = ${4 * monteCarloData.insidePointsX.length / (monteCarloData.insidePointsX.length + monteCarloData.outsidePointsX.length)}`
+          } />
+          <MathJax.Node formula={
+            `\\left|\\pi - 4\\times\\frac{${monteCarloData.insidePointsX.length}}{${(monteCarloData.insidePointsX.length + monteCarloData.outsidePointsX.length)}}\\right| = ${Math.abs(4 * monteCarloData.insidePointsX.length / (monteCarloData.insidePointsX.length + monteCarloData.outsidePointsX.length) - Math.PI)}`
+          } />
         </MathJax.Provider>
-
       </Card>
-
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>The Monte Carlo Method</Modal.Title>
         </Modal.Header>
         <Modal.Body>Info about <a href="https://en.wikipedia.org/wiki/Monte_Carlo_method">Monte Carlo Method</a> TK
-
-
           <br />
           Note: While every other test is deterministic, meaning will always return the same result for the same number of tests, the Monte Carlo Method is probabilistic, meaning it depends on (pseudo)randomness and thus will have slightly different results each time.
         </Modal.Body>

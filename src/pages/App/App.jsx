@@ -12,69 +12,116 @@ export default function App() {
 
   // State
   const [n, setN] = useState(1000);
+
   const [graphData, setGraphData] = useState(
     {
-      leftEndpoints: arrayOfLength(n).map(x => x / (n - 1)),
-      rightEndpoints: arrayOfLength(n).map(x => x / (n - 1)),
-      quarterCircle: arrayOfLength(n).map(x => x / (n - 1)).map(x => Math.sqrt(1 - x ** 2)),
-      leftBarHeight: arrayOfLength(n).map(x => x / (n - 1)).map(x => Math.sqrt(1 - x ** 2)),
-      leftBarArea: arrayOfLength(n).map(x => `Area is ${((1 / (n - 1)) * Math.sqrt(1 - (x / (n - 1)) ** 2)).toFixed(5)}`),
-      leftTotalArea: arrayOfLength(n).map(x => ((1 / (n - 1)) * Math.sqrt(1 - (x / (n - 1)) ** 2))).reduce((a, c) => a + c, 0),
-      rightBarHeight: arrayOfLength(n).map(x => x + 1).map(x => x / (n - 1)).map(x => Math.sqrt(1 - x ** 2)),
-      rightBarArea: arrayOfLength(n).map(x => x + 1).map(x => `Area is ${((1 / (n - 1)) * Math.sqrt(1 - (x / (n - 1)) ** 2)).toFixed(5)}`),
-      rightTotalArea: arrayOfLength(n).map(x => x + 1).map(x => ((1 / (n - 1)) * Math.sqrt(1 - (x / (n - 1)) ** 2))).filter(x => !isNaN(x)).reduce((a, c) => a + c, 0),
-
+      leftEndpoints: arrayOfLength(n)
+        .map(x => x / (n - 1)),
+      rightEndpoints: arrayOfLength(n)
+        .map(x => x / (n - 1)),
+      quarterCircle: arrayOfLength(n)
+        .map(x => x / (n - 1))
+        .map(x => Math.sqrt(1 - x ** 2)),
+      leftBarHeight: arrayOfLength(n)
+        .map(x => x / (n - 1))
+        .map(x => Math.sqrt(1 - x ** 2)),
+      leftBarArea: arrayOfLength(n)
+        .map(x => `Area is ${((1 / (n - 1)) * Math.sqrt(1 - (x / (n - 1)) ** 2)).toFixed(5)}`),
+      leftTotalArea: arrayOfLength(n)
+        .map(x => ((1 / (n - 1)) * Math.sqrt(1 - (x / (n - 1)) ** 2)))
+        .reduce((a, c) => a + c, 0),
+      rightBarHeight: arrayOfLength(n)
+        .map(x => x + 1)
+        .map(x => x / (n - 1))
+        .map(x => Math.sqrt(1 - x ** 2)),
+      rightBarArea: arrayOfLength(n)
+        .map(x => x + 1)
+        .map(x => `Area is ${((1 / (n - 1)) * Math.sqrt(1 - (x / (n - 1)) ** 2)).toFixed(5)}`),
+      rightTotalArea: arrayOfLength(n)
+        .map(x => x + 1)
+        .map(x => ((1 / (n - 1)) * Math.sqrt(1 - (x / (n - 1)) ** 2)))
+        .filter(x => !isNaN(x))
+        .reduce((a, c) => a + c, 0),
     }
   )
-  const [monteCarloPoints, setMonteCarloPoints] = useState(arrayOfLength(n).map(x => [2 * Math.random() - 1, 2 * Math.random() - 1]))
+
+  const [monteCarloPoints, setMonteCarloPoints] = useState(
+    arrayOfLength(n)
+      .map(() => [2 * Math.random() - 1, 2 * Math.random() - 1])
+  )
+
   const [monteCarloData, setMonteCarloData] = useState(
     {
-      insidePointsX: monteCarloPoints.filter(x => x[0] ** 2 + x[1] ** 2 < 1).map(x => x[0]),
-      insidePointsY: monteCarloPoints.filter(x => x[0] ** 2 + x[1] ** 2 < 1).map(x => x[1]),
-      outsidePointsX: monteCarloPoints.filter(x => x[0] ** 2 + x[1] ** 2 > 1).map(x => x[0]),
-      outsidePointsY: monteCarloPoints.filter(x => x[0] ** 2 + x[1] ** 2 > 1).map(x => x[1]),
+      insidePointsX: monteCarloPoints
+        .filter(x => x[0] ** 2 + x[1] ** 2 < 1)
+        .map(x => x[0]),
+      insidePointsY: monteCarloPoints
+        .filter(x => x[0] ** 2 + x[1] ** 2 < 1)
+        .map(x => x[1]),
+      outsidePointsX: monteCarloPoints
+        .filter(x => x[0] ** 2 + x[1] ** 2 > 1)
+        .map(x => x[0]),
+      outsidePointsY: monteCarloPoints
+        .filter(x => x[0] ** 2 + x[1] ** 2 > 1)
+        .map(x => x[1]),
     }
   )
 
-  const [baselProblemData, setBaselProblemData] = useState({
-    squares: arrayOfLength(n).map(x => (x + 1) ** 2),
-    partialSum: arrayOfLength(n).map(x => (x + 1)).map(x => 1 / (x ** 2)).reduce(
-      ([arr, sum], el) => {
-        const next = sum + el
-        arr.push(next)
-        return [arr, next]
-      },
-      [[], 0]
-    )[0],
-  })
+  const [baselProblemData, setBaselProblemData] = useState(
+    {
+      squares: arrayOfLength(n)
+        .map(x => (x + 1) ** 2),
+      partialSum: arrayOfLength(n)
+        .map(x => (x + 1))
+        .map(x => 1 / (x ** 2))
+        .reduce(
+          ([arr, sum], el) => {
+            const next = sum + el
+            arr.push(next)
+            return [arr, next]
+          },
+          [[], 0]
+        )[0],
+    }
+  )
 
-  const [leibnizFormulaData, setLeibnizFormulaData] = useState({
-    odds: arrayOfLength(n).map(x => 2 * x + 1),
-    partialSum: arrayOfLength(n).map(x => 2 * x + 1).map((x, idx) => (-1) ** (idx) * 1 / (x)).reduce(
-      ([arr, sum], el) => {
-        const next = sum + el
-        arr.push(next)
-        return [arr, next]
-      },
-      [[], 0]
-    )[0],
-  })
+  const [leibnizFormulaData, setLeibnizFormulaData] = useState(
+    {
+      odds: arrayOfLength(n)
+        .map(x => 2 * x + 1),
+      partialSum: arrayOfLength(n)
+        .map(x => 2 * x + 1)
+        .map((x, idx) => (-1) ** (idx) * 1 / (x))
+        .reduce(
+          ([arr, sum], el) => {
+            const next = sum + el
+            arr.push(next)
+            return [arr, next]
+          },
+          [[], 0]
+        )[0],
+    }
+  )
 
-  const [nilakanthaFormulaData, setNilakanthaFormulaData] = useState({
-    odds: arrayOfLength(n).map(x => 2 * x + 3),
-    partialSum: arrayOfLength(n).map(x => 2 * x + 3).map((x,idx) => (-1)**(idx)*4 / (x ** 3 - x)).reduce(
-      ([arr, sum], el) => {
-        const next = sum + el
-        arr.push(next)
-        return [arr, next]
-      },
-      [[], 3]
-    )[0],
-  })
+  const [nilakanthaFormulaData, setNilakanthaFormulaData] = useState(
+    {
+      odds: arrayOfLength(n)
+        .map(x => 2 * x + 3),
+      partialSum: arrayOfLength(n)
+        .map(x => 2 * x + 3)
+        .map((x, idx) => (-1) ** (idx) * 4 / (x ** 3 - x))
+        .reduce(
+          ([arr, sum], el) => {
+            const next = sum + el
+            arr.push(next)
+            return [arr, next]
+          },
+          [[], 3]
+        )[0],
+    }
+  )
 
   const [inputValue, setInputValue] = useState(n);
-
-
 
   //Functions
   function arrayOfLength(x) {
@@ -84,72 +131,113 @@ export default function App() {
     }
     return output
   }
+
   async function handleChange(event) {
     setInputValue(event.target.value);
   };
+  
   async function handleClick(event) {
     event.preventDefault();
     setN(inputValue)
-    setGraphData({
-      leftEndpoints: arrayOfLength(n).map(x => x / (n - 1)),
-      rightEndpoints: arrayOfLength(n).map(x => x / (n - 1)),
-      quarterCircle: arrayOfLength(n).map(x => x / (n - 1)).map(x => Math.sqrt(1 - x ** 2)),
-      leftBarHeight: arrayOfLength(n).map(x => x / (n - 1)).map(x => Math.sqrt(1 - x ** 2)),
-      leftBarArea: arrayOfLength(n).map(x => `Area is ${((1 / (n - 1)) * Math.sqrt(1 - (x / (n - 1)) ** 2)).toFixed(5)}`),
-      leftTotalArea: arrayOfLength(n).map(x => ((1 / (n - 1)) * Math.sqrt(1 - (x / (n - 1)) ** 2))).reduce((a, c) => a + c, 0),
-      rightBarHeight: arrayOfLength(n).map(x => x + 1).map(x => x / (n - 1)).map(x => Math.sqrt(1 - x ** 2)),
-      rightBarArea: arrayOfLength(n).map(x => x + 1).map(x => `Area is ${((1 / (n - 1)) * Math.sqrt(1 - (x / (n - 1)) ** 2)).toFixed(5)}`),
-      rightTotalArea: arrayOfLength(n).map(x => x + 1).map(x => ((1 / (n - 1)) * Math.sqrt(1 - (x / (n - 1)) ** 2))).filter(x => !isNaN(x)).reduce((a, c) => a + c, 0),
-    })
-    setMonteCarloPoints(arrayOfLength(n).map(x => [2 * Math.random() - 1, 2 * Math.random() - 1]))
+    setGraphData(
+      {
+        leftEndpoints: arrayOfLength(n)
+          .map(x => x / (n - 1)),
+        rightEndpoints: arrayOfLength(n)
+          .map(x => x / (n - 1)),
+        quarterCircle: arrayOfLength(n)
+          .map(x => x / (n - 1))
+          .map(x => Math.sqrt(1 - x ** 2)),
+        leftBarHeight: arrayOfLength(n)
+          .map(x => x / (n - 1))
+          .map(x => Math.sqrt(1 - x ** 2)),
+        leftBarArea: arrayOfLength(n)
+          .map(x => `Area is ${((1 / (n - 1)) * Math.sqrt(1 - (x / (n - 1)) ** 2)).toFixed(5)}`),
+        leftTotalArea: arrayOfLength(n)
+          .map(x => ((1 / (n - 1)) * Math.sqrt(1 - (x / (n - 1)) ** 2)))
+          .reduce((a, c) => a + c, 0),
+        rightBarHeight: arrayOfLength(n)
+          .map(x => x + 1).map(x => x / (n - 1))
+          .map(x => Math.sqrt(1 - x ** 2)),
+        rightBarArea: arrayOfLength(n)
+          .map(x => x + 1)
+          .map(x => `Area is ${((1 / (n - 1)) * Math.sqrt(1 - (x / (n - 1)) ** 2)).toFixed(5)}`),
+        rightTotalArea: arrayOfLength(n)
+          .map(x => x + 1)
+          .map(x => ((1 / (n - 1)) * Math.sqrt(1 - (x / (n - 1)) ** 2)))
+          .filter(x => !isNaN(x))
+          .reduce((a, c) => a + c, 0),
+      }
+    )
+    setMonteCarloPoints(
+      arrayOfLength(n)
+        .map(() => [2 * Math.random() - 1, 2 * Math.random() - 1])
+    )
     setMonteCarloData(
       {
-        insidePointsX: monteCarloPoints.filter(x => x[0] ** 2 + x[1] ** 2 < 1).map(x => x[0]),
-        insidePointsY: monteCarloPoints.filter(x => x[0] ** 2 + x[1] ** 2 < 1).map(x => x[1]),
-        outsidePointsX: monteCarloPoints.filter(x => x[0] ** 2 + x[1] ** 2 > 1).map(x => x[0]),
-        outsidePointsY: monteCarloPoints.filter(x => x[0] ** 2 + x[1] ** 2 > 1).map(x => x[1]),
+        insidePointsX: monteCarloPoints
+          .filter(x => x[0] ** 2 + x[1] ** 2 < 1)
+          .map(x => x[0]),
+        insidePointsY: monteCarloPoints
+          .filter(x => x[0] ** 2 + x[1] ** 2 < 1)
+          .map(x => x[1]),
+        outsidePointsX: monteCarloPoints
+          .filter(x => x[0] ** 2 + x[1] ** 2 > 1)
+          .map(x => x[0]),
+        outsidePointsY: monteCarloPoints
+          .filter(x => x[0] ** 2 + x[1] ** 2 > 1)
+          .map(x => x[1]),
       }
     )
     setBaselProblemData(
       {
-        squares: arrayOfLength(n).map(x => (x + 1) ** 2),
-        partialSum: arrayOfLength(n).map(x => (x + 1)).map(x => 1 / (x ** 2)).reduce(
-          ([arr, sum], el) => {
-            const next = sum + el
-            arr.push(next)
-            return [arr, next]
-          },
-          [[], 0]
-        )[0],
+        squares: arrayOfLength(n)
+          .map(x => (x + 1) ** 2),
+        partialSum: arrayOfLength(n)
+          .map(x => (x + 1))
+          .map(x => 1 / (x ** 2))
+          .reduce(
+            ([arr, sum], el) => {
+              const next = sum + el
+              arr.push(next)
+              return [arr, next]
+            },
+            [[], 0]
+          )[0],
       }
     )
     setLeibnizFormulaData(
       {
-        odds: arrayOfLength(n).map(x => 2 * x + 1),
-        partialSum: arrayOfLength(n).map(x => 2 * x + 1).map((x, idx) => (-1) ** (idx) * 1 / (x)).reduce(
+        odds: arrayOfLength(n)
+          .map(x => 2 * x + 1),
+        partialSum: arrayOfLength(n)
+          .map(x => 2 * x + 1)
+          .map((x, idx) => (-1) ** (idx) * 1 / (x))
+          .reduce(
+            ([arr, sum], el) => {
+              const next = sum + el
+              arr.push(next)
+              return [arr, next]
+            },
+            [[], 0]
+          )[0],
+      }
+    )
+    setNilakanthaFormulaData({
+      odds: arrayOfLength(n)
+        .map(x => 2 * x + 3),
+      partialSum: arrayOfLength(n)
+        .map(x => 2 * x + 3)
+        .map(x => 4 / (x ** 3 - x))
+        .reduce(
           ([arr, sum], el) => {
             const next = sum + el
             arr.push(next)
             return [arr, next]
           },
-          [[], 0]
+          [[], 3]
         )[0],
-      }
-    )
-
-    setNilakanthaFormulaData({
-      odds: arrayOfLength(n).map(x => 2 * x + 3),
-      partialSum: arrayOfLength(n).map(x => 2 * x + 3).map(x => 4 / (x ** 3 - x)).reduce(
-        ([arr, sum], el) => {
-          const next = sum + el
-          arr.push(next)
-          return [arr, next]
-        },
-        [[], 3]
-      )[0],
     })
-
-
   }
 
   return (

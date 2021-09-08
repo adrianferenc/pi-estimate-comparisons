@@ -19,7 +19,13 @@ export default function BaselProblem({ n, baselProblemData }) {
         width: '100%'
       }}>
         <MathJax.Provider style={{ width: "100%" }}>
-          <MathJax.Node formula={[i === 0 ? '' : '+'] + baselProblemData.squares.slice(10 * i, Math.min(10 * (i + 1), n)).map(x => x.toString().length < 7 ? `\\underset{${baselProblemData.partialSum[Math.sqrt(x) - 1].toFixed(5)}}{\\frac{1}{${x}}}` : `\\underset{${baselProblemData.partialSum[Math.sqrt(x) - 1].toFixed(5)}}{\\frac{1}{${Math.sqrt(x)}^2}}`).join(' + ')} />
+          <MathJax.Node formula={
+            [i === 0 ? '' : '+'] +
+            baselProblemData.squares
+              .slice(10 * i, Math.min(10 * (i + 1), n))
+              .map(x => x.toString().length < 7 ? `\\underset{${baselProblemData.partialSum[Math.sqrt(x) - 1].toFixed(5)}}{\\frac{1}{${x}}}` : `\\underset{${baselProblemData.partialSum[Math.sqrt(x) - 1].toFixed(5)}}{\\frac{1}{${Math.sqrt(x)}^2}}`)
+              .join(' + ')
+          } />
         </MathJax.Provider>
       </Carousel.Item>
     )
@@ -45,8 +51,12 @@ export default function BaselProblem({ n, baselProblemData }) {
         </Carousel>
 
         <MathJax.Provider>
-          <MathJax.Node formula={`\\text{The Partial Sum Equals } ${baselProblemData.squares.map(x => 1 / x).reduce((a, c) => a + c, 0)}`} />
-          <MathJax.Node formula={`\\left|\\pi - \\sqrt{6 \\left(\\text{The Partial Sum}\\right)}\\right| = ${Math.abs(Math.PI - Math.sqrt(6 * baselProblemData.squares.map(x => 1 / x).reduce((a, c) => a + c, 0)))}`} />
+          <MathJax.Node formula={
+            `\\text{The Partial Sum Equals } ${baselProblemData.squares.map(x => 1 / x).reduce((a, c) => a + c, 0)}`
+          } />
+          <MathJax.Node formula={
+            `\\left|\\pi - \\sqrt{6 \\left(\\text{The Partial Sum}\\right)}\\right| = ${Math.abs(Math.PI - Math.sqrt(6 * baselProblemData.squares.map(x => 1 / x).reduce((a, c) => a + c, 0)))}`
+          } />
         </MathJax.Provider>
 
       </Card>
@@ -55,7 +65,43 @@ export default function BaselProblem({ n, baselProblemData }) {
         <Modal.Header closeButton>
           <Modal.Title>The Basel Problem</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Info about <a href="https://en.wikipedia.org/wiki/Basel_problem">the Basel Problem</a> TK</Modal.Body>
+        <Modal.Body>
+          <MathJax.Provider>
+            <MathJax.Node formula={
+              `\\text{The } \\href{https://en.wikipedia.org/wiki/Basel_problem}{\\text{Basel Problem}} \\text{ was a question posed about the}`
+            } />
+          </MathJax.Provider>
+          <MathJax.Provider>
+            <MathJax.Node formula={
+              `\\text{value of the sum of the reciprocal of squares, or }\\zeta(2).`
+            } />
+          </MathJax.Provider>
+          <MathJax.Provider>
+            <MathJax.Node formula={
+              `\\text{ Its name comes from being worked on by the Bernoulli}`
+            } />
+          </MathJax.Provider>
+          <MathJax.Provider>
+            <MathJax.Node formula={
+              `\\text{brothers who lived in Basel, Switzerland, though was}`
+            } />
+          </MathJax.Provider>
+          <MathJax.Provider>
+            <MathJax.Node formula={
+              `\\text{ultimately first solved by Euler. Euler found that the}`
+            } />
+          </MathJax.Provider>
+          <MathJax.Provider>
+            <MathJax.Node formula={
+              `\\text{value of the sum was } \\frac{\\pi^2}{6} \\text{ which is why we compare }`
+            } />
+          </MathJax.Provider>
+          <MathJax.Provider>
+            <MathJax.Node formula={
+              `\\pi \\text{ to } \\sqrt{6 \\left(\\text{The Partial Sum}\\right)}`
+            } />
+          </MathJax.Provider>
+        </Modal.Body>
       </Modal>
     </>
   )
