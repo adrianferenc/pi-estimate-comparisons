@@ -20,11 +20,11 @@ export default function NilakanthaFormula({ n, nilakanthaFormulaData }) {
       }}>
         <MathJax.Provider style={{ width: "100%" }}>
           <MathJax.Node formula={
-            [i === 0 ? '3 + ' : '+'] + 
+            [i === 0 ? '3 + ' : '+'] +
             nilakanthaFormulaData.odds
-            .slice(8 * i, Math.min(8 * (i + 1), n))
-            .map(x => `\\underset{${nilakanthaFormulaData.partialSum[(x - 3) / 2].toFixed(5)}}{\\frac{4}{${x}^3-${x}}}`)
-            .map((x, idx) => idx % 2 === 0 ? (idx > 0 ? ` + ${x}` : x) : ` - ${x}`).join('')
+              .slice(8 * i, Math.min(8 * (i + 1), n))
+              .map(x => `\\underset{${nilakanthaFormulaData.partialSum[(x - 3) / 2].toFixed(5)}}{\\frac{4}{${x}^3-${x}}}`)
+              .map((x, idx) => idx % 2 === 0 ? (idx > 0 ? ` + ${x}` : x) : ` - ${x}`).join('')
           } />
         </MathJax.Provider>
       </Carousel.Item>
@@ -65,7 +65,29 @@ export default function NilakanthaFormula({ n, nilakanthaFormulaData }) {
         <Modal.Header closeButton>
           <Modal.Title>The Nilakantha Formula</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Info about <a href="https://en.wikipedia.org/wiki/Leibniz_formula_for_%CF%80">the Nilakantha Formula</a> TK</Modal.Body>
+        <Modal.Body>
+          <MathJax.Provider>
+            <MathJax.Node formula={
+              `\\text{The } \\href{https://en.wikipedia.org/wiki/Nilakantha_Somayaji}{\\text{Nilakantha}} \\text{ Formula for estimating } \\pi`
+            } />
+
+            <MathJax.Node formula={
+              `\\text{is a variation on the Liebniz Formula, as can be seen } \\href{https://www.maa.org/sites/default/files/pdf/upload_library/22/Allendoerfer/1991/0025570x.di021167.02p0073q.pdf}{\\text{here}}.`
+            } />
+
+            <MathJax.Node formula={
+              `\\text{We have multiplied the series in the article above by 4,}`
+            } />
+
+            <MathJax.Node formula={
+              `\\text{so unlike the Leibniz Formula, this series converges to } \\pi,`
+            } />
+
+            <MathJax.Node formula={
+              `\\text{so we compare } \\pi \\text{ exactly to } \\text{The Partial Sum.}`
+            } />
+          </MathJax.Provider>
+        </Modal.Body>
       </Modal>
     </>
   )

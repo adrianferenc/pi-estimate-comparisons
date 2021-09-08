@@ -70,33 +70,27 @@ export default function BaselProblem({ n, baselProblemData }) {
             <MathJax.Node formula={
               `\\text{The } \\href{https://en.wikipedia.org/wiki/Basel_problem}{\\text{Basel Problem}} \\text{ was a question posed about the}`
             } />
-          </MathJax.Provider>
-          <MathJax.Provider>
+
             <MathJax.Node formula={
               `\\text{value of the sum of the reciprocal of squares, or }\\zeta(2).`
             } />
-          </MathJax.Provider>
-          <MathJax.Provider>
+
             <MathJax.Node formula={
               `\\text{ Its name comes from being worked on by the Bernoulli}`
             } />
-          </MathJax.Provider>
-          <MathJax.Provider>
+
             <MathJax.Node formula={
-              `\\text{brothers who lived in Basel, Switzerland, though was}`
+              `\\text{brothers, who lived in Basel, Switzerland, though was}`
             } />
-          </MathJax.Provider>
-          <MathJax.Provider>
+
             <MathJax.Node formula={
               `\\text{ultimately first solved by Euler. Euler found that the}`
             } />
-          </MathJax.Provider>
-          <MathJax.Provider>
+
             <MathJax.Node formula={
               `\\text{value of the sum was } \\frac{\\pi^2}{6} \\text{ which is why we compare }`
             } />
-          </MathJax.Provider>
-          <MathJax.Provider>
+
             <MathJax.Node formula={
               `\\pi \\text{ to } \\sqrt{6 \\left(\\text{The Partial Sum}\\right)}`
             } />

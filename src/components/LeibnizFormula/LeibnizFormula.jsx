@@ -65,7 +65,35 @@ export default function LeibnizFormula({ n, leibnizFormulaData }) {
         <Modal.Header closeButton>
           <Modal.Title>The Leibniz Formula</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Info about <a href="https://en.wikipedia.org/wiki/Leibniz_formula_for_%CF%80">the Leibniz Formula</a> TK</Modal.Body>
+        <Modal.Body>
+
+          <MathJax.Provider>
+            <MathJax.Node formula={
+              `\\text{The } \\href{https://en.wikipedia.org/wiki/Leibniz_formula_for_%CF%80}{\\text{Leibniz formula for } \\pi} \\text{ or Leibniz-Madhava series}`
+            } />
+
+            <MathJax.Node formula={
+              `\\text{is the alternating series of the reciprocal of odd positive}`
+            } />
+
+            <MathJax.Node formula={
+              `\\text{integers. As the Taylor Series expansion of }`
+            } />
+
+            <MathJax.Node formula={
+              `\\arctan(x) = \\sum_{k=1}^{\\infty} (-1)^k\\frac{x^{2k+1}}{2k+1},`
+            } />
+
+            <MathJax.Node formula={
+              `\\text{our sum is the partial sum of } \\arctan(1) = \\frac{\\pi}{4}.`
+            } />
+
+            <MathJax.Node formula={
+              `\\text{which is why we compare } \\pi \\text{ to } 4 \\left(\\text{The Partial Sum}\\right)`
+            } />
+          </MathJax.Provider>
+
+        </Modal.Body>
       </Modal>
     </>
   )

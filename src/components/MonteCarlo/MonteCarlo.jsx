@@ -94,9 +94,7 @@ export default function MonteCarlo({ n, monteCarloData }) {
           <MathJax.Node formula={
             `\\frac{\\text{Points in the circle}}{\\text{Points in the square}} = \\frac{${monteCarloData.insidePointsX.length}}{${(monteCarloData.insidePointsX.length + monteCarloData.outsidePointsX.length)}} = ${monteCarloData.insidePointsX.length / (monteCarloData.insidePointsX.length + monteCarloData.outsidePointsX.length)}`
           } />
-          <MathJax.Node formula={
-            `\\text{Estimate of } \\pi = 4\\times\\frac{${monteCarloData.insidePointsX.length}}{${(monteCarloData.insidePointsX.length + monteCarloData.outsidePointsX.length)}} = ${4 * monteCarloData.insidePointsX.length / (monteCarloData.insidePointsX.length + monteCarloData.outsidePointsX.length)}`
-          } />
+
           <MathJax.Node formula={
             `\\left|\\pi - 4\\times\\frac{${monteCarloData.insidePointsX.length}}{${(monteCarloData.insidePointsX.length + monteCarloData.outsidePointsX.length)}}\\right| = ${Math.abs(4 * monteCarloData.insidePointsX.length / (monteCarloData.insidePointsX.length + monteCarloData.outsidePointsX.length) - Math.PI)}`
           } />
@@ -107,9 +105,57 @@ export default function MonteCarlo({ n, monteCarloData }) {
         <Modal.Header closeButton>
           <Modal.Title>The Monte Carlo Method</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Info about <a href="https://en.wikipedia.org/wiki/Monte_Carlo_method">Monte Carlo Method</a> TK
-          <br />
-          Note: While every other test is deterministic, meaning will always return the same result for the same number of tests, the Monte Carlo Method is probabilistic, meaning it depends on (pseudo)randomness and thus will have slightly different results each time.
+        <Modal.Body>
+
+          <MathJax.Provider>
+            <MathJax.Node formula={
+              `\\text{The } \\href{https://en.wikipedia.org/wiki/Monte_Carlo_method}{\\text{Monte Carlo Method}} \\text{ for estimating } \\pi. \\text{The method}`
+            } />
+            <MathJax.Node formula={
+              `\\text{places random points in the interval } [-1,1] \\times [-1,1].`
+            } />
+
+            <MathJax.Node formula={
+              `\\text{The area of the square is 4 and the area of the inscribed}`
+            } />
+
+            <MathJax.Node formula={
+              `\\text{circle is } \\pi, \\text{ so the ratio of points in the circle to the total}`
+            } />
+
+            <MathJax.Node formula={
+              `\\text{number of points in the square is } \\frac{\\pi}{4},`
+            } />
+
+            <MathJax.Node formula={
+              `\\text{which is why we compare } \\pi \\text{ to }`
+            } />
+            <MathJax.Node formula={
+              `4 \\left(\\text{The Ratio Of Points in the Circle to Total Points}\\right)`
+            } />
+
+            <br />
+
+            <MathJax.Node formula={
+              `\\textbf{Note: } \\text{While the other tests are deterministic, meaning}`
+            } />
+
+            <MathJax.Node formula={
+              `\\text{will always return the same result for the same number}`
+            } />
+
+            < MathJax.Node formula={
+              `\\text{of tests, the Monte Carlo Method is probabilistic,}`
+            } />
+
+            < MathJax.Node formula={
+              `\\text{meaning it depends on (pseudo)randomness and thus}`
+            } />
+
+            < MathJax.Node formula={
+              `\\text{will have slightly different results each time.}`
+            } />
+          </MathJax.Provider>
         </Modal.Body>
       </Modal>
     </>

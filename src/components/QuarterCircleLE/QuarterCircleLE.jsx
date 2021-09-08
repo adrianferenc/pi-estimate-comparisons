@@ -14,7 +14,7 @@ export default function QuarterCircleLE({ n, graphData }) {
             <Card>
                 <Card.Title>
                     <span style={{ display: "flex", justifyContent: "center", margin: "0 30px" }}>
-                        The Area of a Quarter Circle Using Riemann Sums and Left Endpoints
+                        The Area of a Quarter Circle Using a Riemann Sum and Left Endpoints
                     </span>
                     <span onClick={handleShow} style={{ position: "absolute", right: "0", top: "0", cursor: "pointer" }}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" className="bi bi-info-circle" viewBox="0 0 16 16">
@@ -75,9 +75,36 @@ export default function QuarterCircleLE({ n, graphData }) {
 
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Riemann Sums and Left Endpoints</Modal.Title>
+                    <Modal.Title>The Riemann Sum with Left Endpoints</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>Info about <a href="https://en.wikipedia.org/wiki/Riemann_sum">Riemann Sums</a> TK</Modal.Body>
+                <Modal.Body>
+
+                    <MathJax.Provider>
+                        <MathJax.Node formula={
+                            `\\text{The area of a quarter circle can be estimated using a }`
+                        } />
+
+                        <MathJax.Node formula={
+                            `\\href{https://en.wikipedia.org/wiki/Riemann_sum}{\\text{Riemann Sum}} \\text{ of the function } y = \\sqrt{1-x^2} \\text{ on the}`
+                        } />
+
+                        <MathJax.Node formula={
+                            `\\text{interval } [0,1] \\text{ using left endpoints. Our sum looks like}`
+                        } />
+
+                        <MathJax.Node formula={
+                            `\\sum_{k=0}^{n-1} \\sqrt{1 - \\left(\\frac{k}{n}\\right)^2}\\frac{1}{n}.`
+                        } />
+
+                        <MathJax.Node formula={
+                            `\\text{ The area of a quarter circle is } \\frac{\\pi}{4}, \\text{ which is why we}`
+                        } />
+                        <MathJax.Node formula={
+                            `\\text{compare } \\pi \\text{ to } 4 \\left(\\text{The Partial Sum}\\right)`
+                        } />
+                    </MathJax.Provider>
+
+                </Modal.Body>
             </Modal>
 
         </>
